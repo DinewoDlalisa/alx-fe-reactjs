@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -18,10 +18,10 @@ function App() {
         <h1>Recipe Sharing App</h1>
         <AddRecipeForm />
         <RecipeList />
-        <Switch>
+        <Routes>
           <Route path="/recipe/:id" component={RecipeDetails}/>
           <Router path="/recipe/:id/edit" component={EditRecipeForm}/>
-        </Switch>
+        </Routes>
       </div>
       <div>
         <a href="https://vitejs.dev" target="_blank">
