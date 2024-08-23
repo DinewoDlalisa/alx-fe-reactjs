@@ -9,6 +9,7 @@ import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -19,8 +20,8 @@ function App() {
         <AddRecipeForm />
         <RecipeList />
         <Routes>
-          <Route path="/recipe/:id" component={RecipeDetails}/>
-          <Router path="/recipe/:id/edit" component={EditRecipeForm}/>
+          <Route path="/recipe/:id" element={RecipeDetails}/>
+          <Router path="/recipe/:id/edit" element={EditRecipeForm}/>
         </Routes>
       </div>
       <div>
