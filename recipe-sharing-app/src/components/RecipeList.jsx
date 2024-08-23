@@ -2,6 +2,7 @@
 import React,{useEffect} from 'react';
 import { useRecipeStore } from './recipeStore';
 import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
 
 const RecipeList = () => {
   const recipes = useRecipeStore(state => state.recipes);
