@@ -2,8 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 function BlogPost() {
-    const {postId} = useParams();
-    return <div>Blog Post ID: {postId}</div>
+    const { id } = useParams();
+    return <div>Blog Post ID: {id}</div>;
 }
 
 export default BlogPost;
