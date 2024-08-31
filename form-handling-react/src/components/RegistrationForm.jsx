@@ -1,21 +1,34 @@
 import React, { useState} from 'react';
 
 const RegistrationForm = () => {
-    const [username, useUsername] = ('');
-    const [email, useEmail]= ('');
-    const [password, usePassword]= ('');
+    const [username, useUsername] = useState('');
+    const [email, useEmail]= useState('');
+    const [password, usePassword]= useState('');
+    const [errors, setErrors]= useState({});
 
 
-    const handleSubmit =(element) => {
-        element.preventDefault();
-        if (username && email && password) {
-            console.log ({username, email, password });
+    const handleSubmit =(event) => {
+        event.preventDefault();
+
+        let validationErrors = {};
+
+        if (!username) {
+           validationErrors.username = 'Username is required';
         }
-        else{
-            alert('Fill in all required fields');
+        if (!email) {
+            validationErrors.email = 'Email is required';
         }
-        
-    }
+        if (!username) {
+            validationErrors.password = 'Password is required';
+        }
+
+        setErrors(validationErrors);
+
+        if (Object.keys(validationErrors).length = 0) {
+            console.log({username, email, password });
+        }   
+    };
+
     return (
         <form on submit= {handleSubmit}>
             <div>
@@ -34,7 +47,7 @@ const RegistrationForm = () => {
                 <button type='submit'>Register Here</button>
             </div>
         </form>
-    )
+    );
 };
 
 
