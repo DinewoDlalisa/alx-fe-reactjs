@@ -18,7 +18,7 @@ const RegistrationForm = () => {
         if (!email) {
             validationErrors.email = 'Email is required';
         }
-        if (!username) {
+        if (!password) {
             validationErrors.password = 'Password is required';
         }
 
