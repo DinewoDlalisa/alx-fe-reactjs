@@ -1,9 +1,10 @@
 import React from 'react';
 import {Route, Navigate } from 'react-dom';
+import {useAuth} from '../hooks/useAuth';
 
 
 function ProtectedRoute({ element, ...rest}) {
-    const isAuthenticated = false;
+    const isAuthenticated = useAuth ();
 
     return(
         <Route
