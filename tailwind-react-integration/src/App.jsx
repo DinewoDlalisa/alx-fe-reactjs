@@ -2,7 +2,6 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import userProfile from './components/UserProfile'
 import UserProfile from './components/UserProfile'
 
 function App() {
