@@ -5,6 +5,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import HomePage from './components/HomePage';
 import RecipeDetail from './components/RecipeDetail';
+import AddRecipeForm from './components/AddRecipeForm';
 import './App.css'
 
 function App() {
@@ -14,10 +15,9 @@ function App() {
     <>
      <Router>
       <Routes>
-        {/* Home Page Route */}
         <Route path="/" element={<HomePage />} />
-        {/* Recipe Detail Route */}
         <Route path="/recipe/:id" element= {<RecipeDetail/>} />
+        <Route path="/add-recipe" element= {<AddRecipeForm />} />
       </Routes>
      </Router>
       <div>
