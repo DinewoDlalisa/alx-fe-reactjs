@@ -3,12 +3,40 @@
       "id": 1,
       "title": "Spaghetti Carbonara",
       "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+      "ingredients": [
+        "200g spaghetti",
+        "100g pancetta",
+        "2 large eggs",
+        "50g Pecorina cheese",
+        "Black pepper"
+      ],
+      "instructions": [
+        "Boil the pasta",
+        "Fry the pancetta.",
+        "Beat the egss and mix with cheese",
+        "Combine pasta, pancetta, and egg mixture."
+      ]
+
+
     },
     {
       "id": 2,
       "title": "Chicken Tikka Masala",
       "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+      "ingredients":[
+        "500g chicken breast",
+        "1 cup yoghurt",
+        "2 tbsp tikka masala spice mix",
+        "100 ml cream",
+        "1 can tomatoes"
+      ],
+      "instructions":[
+        "Marinate chicken in yoghurt and spices",
+        "Grill the chicken until cooked thoroughly",
+        "Cook the tomatoes and cream together to make a sauce.",
+        "Mix grilled chicken with the sauce and serve."
+      ]
     }
   ]

@@ -3,12 +3,23 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import HomePage from './components/HomePage';
+import RecipeDetail from './components/RecipeDetail';
+import './App.css'
+import { Route, Router, Routes } from 'react-router-dom';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+     <Router>
+      <Routes>
+        {/* Home Page Route */}
+        <Route path="/" element={<HomePage />} />
+        {/* Recipe Detail Route */}
+        <Route path="/recipe/:id" element= {<RecipeDetail/>} />
+      </Routes>
+     </Router>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
