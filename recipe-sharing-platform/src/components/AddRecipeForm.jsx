@@ -9,8 +9,8 @@ const AddRecipeForm = () => {
    });
 
    const [errors, setErrors] = useState({});
-   const handleInputChange = (element) => {
-    const {name, value } = element.target;
+   const handleInputChange = (e) => {
+    const {name, value } = e.target;
     setFormData({
         ...formData,
         [name]: value,
@@ -32,7 +32,7 @@ const AddRecipeForm = () => {
    };
 
 
-    const handleSubmit = (element) => {
+    const handleSubmit = (e) => {
         element.preventDefault();
 
         const newErrors = validate();
