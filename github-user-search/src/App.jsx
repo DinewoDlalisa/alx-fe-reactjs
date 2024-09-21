@@ -4,7 +4,6 @@ import { getUserData} from './services/gitHubService';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import axios from 'axios';
 
 
 function App() {
@@ -13,20 +12,21 @@ function App() {
   const[error, setError]= useState();
 
   useEffect(()=> {
-    const apiKey= process.env.REACT_APP_GITHUB_API_KEY;
+    
+    getUserData('octocat')
+    .then(response =>{
+      setUserData(response.data);
+    })
+    .catch(error => {
+      setError('Error fecthing user data.');
+      console.error(error);
+    });
+    
+  },[]);
 
-    axios.get('https://api.github.com/users/octocat', {headers:{
-      Authorization: 'token ${apiKey}'
-    }
-  })
-  .then(response => {
-    setUserData(response.data);
-  })
-  .catch(error =>{
-    setError('Error fetching userdata.');
-    console.error(error);
-  });
-  } []);
+
+
+
 
   return (
     <>
