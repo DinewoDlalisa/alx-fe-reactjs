@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import { fetchUserData } from '../services/githubService';
-import { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
+import { searchGitHubUsers } from "../services/githubService";
+
 
 const Search = ({ onSearch }) => {
     const [username, setUsername] = useState('');

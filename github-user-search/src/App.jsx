@@ -1,7 +1,7 @@
 import { useState, Suspense } from 'react';
 import React from 'react';
 import './App.css';
-import { searchGitHubUsers } from './services/githubServices';
+import { searchGitHubUsers } from './services/githubService';
 
 const Search = React.lazy(() => import('./components/Search'));
 
@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <h1>GitHub User Search</h1>
 
-      {/* Wrap Search component in Suspense */}
+     
       <Suspense fallback={<p>Loading search component...</p>}>
         <Search onSearch={handleSearch} users={users} loading={loading} error={error} />
       </Suspense>
