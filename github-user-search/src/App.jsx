@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="App">
       <h1>GitHub User Search</h1>
-      <Search onSearch={handleSearch} />
+      <Search onSearch={handleSearch} users={users} loading={loading} error={error}/>
 
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
