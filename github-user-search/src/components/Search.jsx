@@ -1,12 +1,13 @@
 import React, {useState} from "react";
+import { fetchUserData } from '../services/githubService';
 
-const Search = ({ onSearch }) => {
+const Search = () => {
     const [username, setUsername] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [users, setUsers] = useState([]);
 
-    const handleSubmit = (element) => {
+    const handleSubmit = async (element) => {
         element.preventDefault();
         if (username.trim()) {
            setLoading(true);
