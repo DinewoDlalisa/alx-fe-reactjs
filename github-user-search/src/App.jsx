@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import React from 'react';
 import './App.css';
-import { fetchUserData } from './services/githubServices';
-import Search from './components/Search';
+import { searchGitHubUsers } from './services/githubServices';
+
+const Search = React.lazy(() => import('./components/Search'));
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -31,7 +32,11 @@ function App() {
   return (
     <div className="App">
       <h1>GitHub User Search</h1>
-      <Search onSearch={handleSearch} users={users} loading={loading} error={error}/>
+
+      {/* Wrap Search component in Suspense */}
+      <Suspense fallback={<p>Loading search component...</p>}>
+        <Search onSearch={handleSearch} users={users} loading={loading} error={error} />
+      </Suspense>
 
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
@@ -49,7 +54,6 @@ function App() {
           ))}
       </div>
 
-
       <div>
         <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
@@ -63,4 +67,3 @@ function App() {
 }
 
 export default App;
-
