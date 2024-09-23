@@ -28,3 +28,5 @@ export const searchGitHubUsers = async ({ username, location, minRepos }) => {
         }
     });
 };
+
+export default githubServices;
