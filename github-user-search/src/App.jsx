@@ -1,9 +1,9 @@
-import { useState, Suspense } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import React from 'react';
 import './App.css';
 import { searchGitHubUsers } from './services/githubService';
 
-const Search = React.lazy(() => import('./components/Search'));
+const Search = lazy(() => import('./components/Search'));
 
 function App() {
   const [users, setUsers] = useState([]);
