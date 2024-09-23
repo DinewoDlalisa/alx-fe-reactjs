@@ -1,40 +1,66 @@
-import { useState } from 'react'
-import React from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import React from 'react';
+import './App.css';
+import { searchGitHubUsers } from './services/githubServices';
+import Search from './components/Search';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSearch = async (username) => {
+    setLoading(true);
+    setError('');
+    setUsers([]);
+
+    try {
+      const response = await searchGitHubUsers(username);
+      if (response.data.items.length === 0) {
+        setError('No users found');
+      } else {
+        setUsers(response.data.items);
+      }
+    } catch (err) {
+      setError('Looks like we can\'t find any users');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <>
+    <div className="App">
+      <h1>GitHub User Search</h1>
+      <Search onSearch={handleSearch} />
+
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+
+      <div className="user-list">
+        {users.length > 0 &&
+          users.map((user) => (
+            <div key={user.id} className="user-card">
+              <img src={user.avatar_url} alt={user.login} />
+              <h2>{user.login}</h2>
+              <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+                View Profile
+              </a>
+            </div>
+          ))}
+      </div>
+
+
       <div>
-        <h1>Github User Search Application</h1>
-        <p>Start searching for GitHub profiles</p>
-      </div>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+        <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
+          <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
+          <img src="./assets/react.svg" className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 
 export default App;
+
