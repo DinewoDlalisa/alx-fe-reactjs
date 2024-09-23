@@ -16,7 +16,7 @@ const Search = ({ onSearch }) => {
             const fetchedUsers = await onSearch(username);
             setUsers(fetchedUsers);
            }catch (err) {
-            setError("User not found")
+            setError("Looks like we cant find the user");
            } finally {
             setLoading(false);
            }
