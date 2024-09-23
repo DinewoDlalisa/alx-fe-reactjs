@@ -4,7 +4,7 @@ const API_URL = 'https://api.github.com';
 const API_KEY = process.env.REACT_APP_GITHUB_KEY;
 
 
-export const searchGitHubUsers = (username) => {
+export const fetchUserData = (username) => {
     return axios.get('${API_URL}/search/users', {
         params: { q: username },
         headers: {
