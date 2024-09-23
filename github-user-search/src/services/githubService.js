@@ -23,6 +23,8 @@ export const searchGitHubUsers = async ({ username, location, minRepos }) => {
  
     const url = `${API_URL}/search/users?${query}`;
 
+    console.log('Fetching from: ${url}');
+
   
     return axios.get(url, {
         headers: {
