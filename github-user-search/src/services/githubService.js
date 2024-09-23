@@ -14,9 +14,10 @@ export const fetchUserData = async (username) => {
     return response.data;
 };
 
-export const searchGitHubUsers = (username) => {
+export const searchGitHubUsers = ({ username, location, minRepos }) => {
+    const query = `${username} ${location ? `location:${location}` : ''} ${minRepos ? `repos:>${minRepos}` : ''}`.trim();
     return axios.get('${API_URL}/search/users', {
-        params: { q: username },
+        params: { q: query },
         headers: {Authorization: 'token ${API_KEY}'}
     });
 };

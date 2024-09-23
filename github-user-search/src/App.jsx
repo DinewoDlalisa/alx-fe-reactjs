@@ -9,13 +9,13 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSearch = async (username) => {
+  const handleSearch = async ({ username, location, minRepos }) => {
     setLoading(true);
     setError('');
     setUsers([]);
 
     try {
-      const response = await searchGitHubUsers(username);
+      const response = await searchGitHubUsers({ username, location, minRepos });
       if (response.data.items.length === 0) {
         setError('No users found');
       } else {

@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import { fetchUserData } from '../services/githubService';
 
-const Search = () => {
+const Search = ({ onSearch }) => {
     const [username, setUsername] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [users, setUsers] = useState([]);
+    const [location, setLocation] = useState('')
+    const [minRepos, setMinRepos]= useState('')
 
     const handleSubmit = async (element) => {
         element.preventDefault();
@@ -22,12 +24,17 @@ const Search = () => {
             setLoading(false);
            }
         }
+        if (username.trim()){
+            onSearch ({ username, location, minRepos });
+        }
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <input type="text" value={username} onChange={(element)=> setUsername(element.target.value)} placeholder="Enter username"/>
+                <input type="text" value={location} onChange={(element) => setLocation(element.target.value)} placeholder="Location"/>
+                <input type="number" value={minRepos} onChange={(element) => setMinRepos(element.target.value)} placeholder="Minimum Repositories"/>
                 <button type="submit">Search</button>
             </form>
            
