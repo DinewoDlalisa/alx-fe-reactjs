@@ -1,7 +1,7 @@
 import { useState, Suspense, lazy } from 'react';
 import React from 'react';
 import './App.css';
-import { searchGitHubUsers } from './services/githubService';
+import { fetchUserData } from './services/githubService';
 
 const Search = lazy(() => import('./components/Search'));
 
@@ -13,17 +13,16 @@ function App() {
   const handleSearch = async ({ username, location, minRepos }) => {
     setLoading(true);
     setError('');
-    setUsers([]);
 
     try {
-      const response = await searchGitHubUsers({ username, location, minRepos });
-      if (response.data.items.length === 0) {
+      const response = await fetchUserData({ username, location, minRepos });
+      if (response.items.length === 0) {
         setError('No users found');
       } else {
-        setUsers(response.data.items);
+        setUsers(response.items);
       }
     } catch (err) {
-      setError('Looks like we can\'t find any users');
+      setError("Looks like we can't find any users");
     } finally {
       setLoading(false);
     }
@@ -33,9 +32,8 @@ function App() {
     <div className="App">
       <h1>GitHub User Search</h1>
 
-     
       <Suspense fallback={<p>Loading search component...</p>}>
-        <Search onSearch={handleSearch} users={users} loading={loading} error={error} />
+        <Search onSearch={handleSearch} />
       </Suspense>
 
       {loading && <p>Loading...</p>}

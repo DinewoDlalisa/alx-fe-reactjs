@@ -1,32 +1,47 @@
 import axios from "axios";
 
-const API_URL = 'https://api.github.com/search/users?q={query}';
+const API_URL = 'https://api.github.com/search/users';
 const API_KEY = process.env.REACT_APP_GITHUB_KEY;
 
-export const searchGitHubUsers = async ({ username, location, minRepos }) => {
-    let query = '';
+export const fetchUserData = async ({ username, location, minRepos }) => {
+    try {
+        let query =[];
 
-    if (username) {
-        query += `q=${username}`;
-    }
-
-    if (location) {
-        query += `+location:${location}`;
-    }
-
-    if (minRepos) {
-        query += `+repos:>=${minRepos}`;
-    }
-
-    const url = `https://api.github.com/search/users?q=${query}`;
-
-    console.log(`Fetching from: ${url}`);
-
-    return axios.get(url, {
-        headers: {
-            Authorization: `token ${API_KEY}`
+        if (username){
+            query.push('q=${username}');
         }
-    });
+
+        if (location) {
+            query.push('location:${location');
+        }
+        if (minRepos) {
+            query.push('repos:>=${minRepos}');
+        }
+
+
+
+        const queryString =query.length> 0 ? query.join('+'): '';
+
+        const url ='${API_URL}?q=${queryString}';
+        console.log('Fetcing from: ${url}');
+
+        const response = await axios.get(url, {
+            headers: {
+                Authorization: 'token ${API_KEY}',
+            }
+        });
+
+
+        return response.data;
+    } catch (error) {
+        console.error('Error fetcing GitHub users:',error);
+        throw new Error('Failed to fetch Github users');
+    }
+   
+
+   
 };
 
-export default githubServices;
+export default {
+    fetchUserData,
+};
