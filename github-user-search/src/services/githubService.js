@@ -25,7 +25,7 @@ export const fetchUserData = async ({ username, location, minRepos }) => {
         const url ='${API_URL}?q=${queryString}';
         console.log('Fetcing from: ${url}');
 
-        const response = await axios.get(url, {
+        const response = await axios.get('https://api.github.com/search/users?q={query}', {
             headers: {
                 Authorization: 'token ${API_KEY}',
             }
