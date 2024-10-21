@@ -29,16 +29,13 @@ const Search = ({ onSearch }) => {
       setError('');
       setUsers([]);
       try {
-        const fetchedUsers = await onSearch(username);
+        const fetchedUsers = await onSearch({ username, location, minRepos });
         setUsers(fetchedUsers);
       } catch (err) {
         setError("Looks like we can't find the user");
       } finally {
         setLoading(false);
       }
-    }
-    if (username.trim()) {
-      onSearch({ username, location, minRepos });
     }
   };
 
@@ -83,9 +80,13 @@ const Search = ({ onSearch }) => {
 
       {loading && <p className="mt-4 text-gray-500">Loading...</p>}
       {error && <p className="mt-4 text-red-500">{error}</p>}
+      {users.length === 0 && !loading && !error && (
+        <p className="mt-4 text-gray-500">Looks like we can't find the user</p>
+      )}
+
       {users.length > 0 && (
         <div className="mt-4 space-y-4">
-          {users.map(user => (
+          {users.map((user) => (
             <div key={user.id} className="flex items-center border p-4 rounded shadow">
               <img src={user.avatar_url} alt={user.login} width="100" className="rounded-full" />
               <div className="ml-4">
@@ -108,3 +109,4 @@ const Search = ({ onSearch }) => {
 };
 
 export default Search;
+
